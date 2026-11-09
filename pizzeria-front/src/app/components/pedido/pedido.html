@@ -1,0 +1,123 @@
+
+<div style="border:4px solid red; padding:20px;">
+
+  <form [formGroup]="formulario" (ngSubmit)="agregarPizza()">
+
+    <div style="display:flex; justify-content:space-around; align-items:center; gap:15px; margin-bottom:20px; flex-wrap:wrap;">
+
+      <div>
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" type="text" formControlName="nombre">
+      </div>
+
+      <div>
+        <label for="direccion">Dirección:</label>
+        <input id="direccion" type="text" formControlName="direccion">
+      </div>
+
+      <div>
+        <label for="telefono">Teléfono:</label>
+        <input id="telefono" type="tel" formControlName="telefono">
+      </div>
+
+    </div>
+
+    <div style="display:flex; justify-content:space-around; gap:15px; align-items:flex-start; flex-wrap:wrap;">
+
+      <fieldset>
+        <legend>Tamaño Pizza</legend>
+
+        <div>
+          <label>
+            <input type="radio" formControlName="tamano" value="Chica">
+            Chica $40
+          </label>
+        </div>
+
+        <div>
+          <label>
+            <input type="radio" formControlName="tamano" value="Mediana">
+            Mediana $80
+          </label>
+        </div>
+
+        <div>
+          <label>
+            <input type="radio" formControlName="tamano" value="Grande">
+            Grande $120
+          </label>
+        </div>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Ingredientes</legend>
+
+        <div>
+          <label>
+            <input type="checkbox" formControlName="jamon">
+            Jamón $10
+          </label>
+        </div>
+
+        <div>
+          <label>
+            <input type="checkbox" formControlName="pina">
+            Piña $10
+          </label>
+        </div>
+
+        <div>
+          <label>
+            <input type="checkbox" formControlName="champinones">
+            Champiñones $10
+          </label>
+        </div>
+
+      </fieldset>
+
+      <div>
+        <label for="cantidad">Núm. de Pizzas</label>
+
+        <br><br>
+
+        <input
+          id="cantidad"
+          type="number"
+          min="1"
+          max="100"
+          formControlName="cantidad">
+
+        <br><br>
+
+        <label for="fecha_pedido">Fecha de compra:</label>
+
+        <br>
+
+        <input
+          id="fecha_pedido"
+          type="date"
+          formControlName="fecha_pedido">
+
+        <br><br>
+
+        <button type="submit">Agregar</button>
+      </div>
+
+    </div>
+
+    @if (error) {
+      <p style="color:#b91c1c; margin-top:12px;">
+        {{ error }}
+      </p>
+    }
+
+    @if (mensaje) {
+      <p style="color:#166534; margin-top:12px;">
+        {{ mensaje }}
+      </p>
+    }
+
+  </form>
+
+</div>

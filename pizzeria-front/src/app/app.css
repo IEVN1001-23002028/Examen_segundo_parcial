@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #9bb8d6;
+}
+
+.pizzeria-layout {
+  width: 100%;
+  min-height: 100vh;
+  padding: 25px;
+  background-color: #9bb8d6;
+}
+
+.paneles-inferiores {
+  display: grid;
+  grid-template-columns: 3fr 2.35fr;
+  gap: 10px;
+  margin-top: 8px;
+  align-items: stretch;
+}
+
+@media (max-width: 800px) {
+  .pizzeria-layout {
+    padding: 10px;
+  }
+
+  .paneles-inferiores {
+    grid-template-columns: 1fr;
+  }
+}

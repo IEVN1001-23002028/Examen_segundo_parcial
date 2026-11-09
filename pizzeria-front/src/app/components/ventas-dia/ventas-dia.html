@@ -1,0 +1,177 @@
+
+<div class="ventas-panel">
+
+  <div class="ventas-contenido">
+
+    <h3>Ventas del día</h3>
+
+    <div class="filtros-ventas">
+
+      <label for="tipoConsulta">Consultar por:</label>
+
+      <select
+        id="tipoConsulta"
+        [(ngModel)]="tipoConsulta"
+        (ngModelChange)="cambiarTipoConsulta()">
+
+        <option value="dia">Día de la semana</option>
+        <option value="mes">Mes</option>
+
+      </select>
+
+      <div *ngIf="tipoConsulta === 'dia'" class="filtro">
+
+        <label for="dia">Día:</label>
+
+        <select id="dia" [(ngModel)]="dia">
+          <option *ngFor="let item of dias" [value]="item">
+            {{ item | titlecase }}
+          </option>
+        </select>
+
+      </div>
+
+      <div *ngIf="tipoConsulta === 'mes'" class="filtro">
+
+        <label for="mes">Mes:</label>
+
+        <select id="mes" [(ngModel)]="mes">
+          <option *ngFor="let item of meses" [value]="item">
+            {{ item | titlecase }}
+          </option>
+        </select>
+
+        <label for="anio">Año:</label>
+
+        <input
+          id="anio"
+          type="number"
+          min="1"
+          max="9999"
+          [(ngModel)]="anio">
+
+      </div>
+
+    </div>
+
+    <div class="lista-ventas">
+
+      <p *ngIf="cargando" class="estado">
+        Consultando ventas...
+      </p>
+
+      <p *ngIf="error" class="mensaje-error">
+        {{ error }}
+      </p>
+
+      <ng-container *ngIf="!cargando">
+
+        <div *ngFor="let venta of ventas" class="venta-item">
+
+          <div class="venta-informacion">
+            <strong>{{ venta.nombre_cliente }}</strong>
+
+            <strong>
+              Total {{ venta.total | currency:'MXN':'symbol':'1.2-2' }}
+            </strong>
+          </div>
+
+          <div class="venta-detalles">
+            <span>{{ venta.fecha_pedido }}</span>
+
+            <button
+              type="button"
+              (click)="verDetalle(venta.id_pedido)">
+              Ver detalle
+            </button>
+          </div>
+
+        </div>
+
+        <p
+          *ngIf="ventas.length === 0 && !error"
+          class="estado">
+          No hay ventas registradas para esta consulta.
+        </p>
+
+      </ng-container>
+
+    </div>
+
+    <div class="resumen-ventas">
+
+      <h2>
+        Ventas totales:
+        {{ totalAcumulado | currency:'MXN':'symbol':'1.2-2' }}
+      </h2>
+
+      <p>Pedidos registrados: {{ cantidadVentas }}</p>
+
+    </div>
+
+    <button
+      type="button"
+      class="btn-consultar"
+      (click)="consultarVentas()"
+      [disabled]="cargando">
+      {{ cargando ? 'Consultando...' : 'Ventas totales por día / mes' }}
+    </button>
+
+  </div>
+
+  <div *ngIf="cargandoDetalle" class="estado">
+    Consultando detalle del pedido...
+  </div>
+
+  <div
+    *ngIf="detalleSeleccionado as detalle"
+    class="detalle-venta">
+
+    <h3>Detalle del pedido #{{ detalle.id_pedido }}</h3>
+
+    <p><strong>Cliente:</strong> {{ detalle.nombre_cliente }}</p>
+    <p><strong>Dirección:</strong> {{ detalle.direccion }}</p>
+    <p><strong>Teléfono:</strong> {{ detalle.telefono }}</p>
+    <p><strong>Fecha:</strong> {{ detalle.fecha_pedido }}</p>
+
+    <table class="tabla-detalle">
+      <thead>
+        <tr>
+          <th>Tamaño</th>
+          <th>Ingredientes</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let pizza of detalle.pizzas">
+
+          <td>{{ pizza.tamano }}</td>
+
+          <td>
+            {{ pizza.ingredientes || 'Sin ingredientes' }}
+          </td>
+
+          <td>{{ pizza.cantidad }}</td>
+
+          <td>
+            {{ pizza.subtotal | currency:'MXN':'symbol':'1.2-2' }}
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="total-detalle">
+      Total:
+      {{ detalle.total | currency:'MXN':'symbol':'1.2-2' }}
+    </h3>
+
+    <button type="button" (click)="cerrarDetalle()">
+      Cerrar detalle
+    </button>
+
+  </div>
+
+</div>

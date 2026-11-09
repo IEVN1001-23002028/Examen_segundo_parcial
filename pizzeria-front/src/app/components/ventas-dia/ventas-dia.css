@@ -1,0 +1,166 @@
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.ventas-panel {
+  background: #9bb8d6;
+  border: 4px solid yellow;
+  padding: 20px;
+  min-height: 350px;
+  height: 100%;
+}
+
+.ventas-contenido {
+  display: flex;
+  flex-direction: column;
+  min-height: 310px;
+}
+
+.ventas-contenido h3 {
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+.filtros-ventas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+.filtro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filtros-ventas select,
+.filtros-ventas input {
+  padding: 5px;
+  border: 1px solid #888;
+  background: white;
+}
+
+.filtros-ventas input {
+  width: 85px;
+}
+
+.lista-ventas {
+  flex: 1;
+  margin-top: 15px;
+}
+
+.venta-item {
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.venta-informacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 19px;
+}
+
+.venta-detalles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.resumen-ventas {
+  margin-top: 20px;
+}
+
+.resumen-ventas h2 {
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.resumen-ventas p {
+  font-size: 14px;
+}
+
+.btn-consultar {
+  align-self: flex-start;
+  margin-top: 15px;
+  padding: 5px 12px;
+}
+
+.estado {
+  text-align: center;
+  padding: 20px 0;
+  color: #334155;
+}
+
+.mensaje-error {
+  color: #b91c1c;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.detalle-venta {
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid #64748b;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.detalle-venta h3 {
+  margin-top: 0;
+}
+
+.detalle-venta p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.tabla-detalle {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 13px;
+  margin: 15px 0;
+}
+
+.tabla-detalle th,
+.tabla-detalle td {
+  border: 1px solid #888;
+  padding: 7px 5px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.tabla-detalle th {
+  background: #eeeeee;
+}
+
+.total-detalle {
+  text-align: right;
+  margin-top: 15px;
+}
+
+@media (max-width: 800px) {
+  .ventas-panel {
+    padding: 12px;
+  }
+
+  .venta-informacion {
+    font-size: 16px;
+  }
+
+  .resumen-ventas h2 {
+    font-size: 21px;
+  }
+}

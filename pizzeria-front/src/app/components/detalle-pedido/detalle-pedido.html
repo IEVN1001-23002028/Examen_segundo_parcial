@@ -1,0 +1,59 @@
+
+<div class="detalle-panel">
+
+  <div class="tabla-contenedor">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tamaño</th>
+          <th>Ingredientes</th>
+          <th>Núm. Pizzas</th>
+          <th>SubTotal</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let pizza of pizzas; let i = index"
+          (click)="seleccionarPizza(i)"
+          [class.seleccionada]="seleccionado === i">
+
+          <td>{{ pizza.tamano }}</td>
+          <td>{{ pizza.ingredientes }}</td>
+          <td>{{ pizza.cantidad }}</td>
+          <td>{{ pizza.subtotal | currency:'MXN' }}</td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="pizzas.length === 0" class="sin-pizzas">
+      No hay pizzas agregadas
+    </p>
+
+  </div>
+
+  <div class="total-pedido">
+    Total: {{ total | currency:'MXN' }}
+  </div>
+
+  <div class="acciones">
+    <button type="button" (click)="quitarPizza()" [disabled]="guardando">
+      Quitar
+    </button>
+
+    <button
+      type="button"
+      (click)="terminarPedido()"
+      [disabled]="guardando">
+
+      {{ guardando ? 'Guardando...' : 'Terminar' }}
+
+    </button>
+  </div>
+
+  <p *ngIf="error" class="mensaje-error">{{ error }}</p>
+  <p *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</p>
+
+</div>
